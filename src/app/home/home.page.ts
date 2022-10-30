@@ -11,9 +11,13 @@ export class HomePage {
     currentOption: string;
     notShowingDropdownItems: boolean;
 
+    /**
+     * @brief Class constructor. Initializes the variavbles and fucntions
+     */
     constructor() {
-        this.notShowingDropdownItems = true;
+        this.notShowingDropdownItems = true; //boolean that contains the showing state of dropdown
         this.options = [
+            // Options in the dropdown
             'Custom dropdown test',
             'Second dropdown test',
             'Third dropdown test',
@@ -21,31 +25,50 @@ export class HomePage {
             'But not less important',
             'The latest option in the dropdown',
         ];
-        window.onclick = function (event) {
-            if (!event.target.matches('.dropbtn') && !event.target.matches('.arrow-div')) {
-                var dropdowns = document.getElementsByClassName('dropdown-content');
-                var i;
-                for (i = 0; i < dropdowns.length; i++) {
-                    var openDropdown = dropdowns[i];
-                    if (openDropdown.classList.contains('show')) {
-                        openDropdown.classList.remove('show');
-                        this.notShowingDropdownItems = true;
-                    }
+        this.currentOption = this.options[0];
+        window.onclick = this.onWindowClicked;
+    }
+
+    /**
+     * @brief Funtion to attend the mouse click events
+     *
+     * @param  {PointerEvent} event  Mouse clicke event slot
+     * @returns void
+     */
+    onWindowClicked(event: PointerEvent): void {
+        if (
+            !event.target['matches']('.dropbtn') &&
+            !event.target['matches']('.arrow_div') &&
+            !event.target['matches']('.arrow-image')
+        ) {
+            var dropdowns = document.getElementsByClassName('dropdown_content');
+            for (let i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                    this.notShowingDropdownItems = true;
                 }
             }
-        };
+        }
     }
 
-    ngOnInit(): void {
-        this.currentOption = this.options[0];
-    }
-
-    handleChange(option: any) {
+    /**
+     * @brief On change selected item in dropdown function.
+     * Set to currentOption the selected item
+     *
+     * @param  {string} option Option selected
+     * @returns void
+     */
+    handleChange(option: string): void {
         this.currentOption = option;
     }
 
-    toggleShow() {
-        console.log('============= myFunction =============');
+    /**
+     * @brief Toggles the viewing state of dropdown items
+     *
+     * @returns void
+     */
+    toggleShow(): void {
         document.getElementById('myDropdown').classList.toggle('show');
         this.notShowingDropdownItems = !this.notShowingDropdownItems;
     }
