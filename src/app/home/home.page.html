@@ -1,20 +1,45 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+    <div class="background_image">
+        <img src="assets/images/background.png" alt="background_image" />
+    </div>
+    <div id="container">
+        <ion-card>
+            <ion-card-header>
+                <ion-card-title align="left">Custom Dropdown test</ion-card-title>
+            </ion-card-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+            <ion-card-content>
+                <ion-row>
+                    <ion-col>
+                        <div class="dropdown" (click)="toggleShow()">
+                            <div class="arrow-div">
+                                <img
+                                    [class.rotateimg180]="notShowingDropdownItems"
+                                    alt="arrow"
+                                    src="assets/images/chevron.svg"
+                                />
+                            </div>
+                            <div class="dropbtn" type="button">{{ currentOption}}</div>
+                            <div id="myDropdown" class="dropdown-content">
+                                <div
+                                    *ngFor="let option of options; let i = index;"
+                                    (click)="handleChange(option)"
+                                >
+                                    {{option}}
+                                </div>
+                            </div>
+                        </div>
+
+                        <ion-item lines="none" align="left">
+                            <ion-label align="left">Selected: {{ currentOption }}</ion-label>
+                        </ion-item>
+                    </ion-col>
+                    <ion-label class="splitter"></ion-label>
+                    <ion-col align="left">
+                        <ion-label>This is a design example!!!!!</ion-label>
+                    </ion-col>
+                </ion-row>
+            </ion-card-content>
+        </ion-card>
+    </div>
 </ion-content>
