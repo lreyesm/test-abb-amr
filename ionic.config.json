@@ -1,0 +1,7 @@
+{
+  "name": "Test_ABB_AMR",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
